@@ -10,12 +10,14 @@
 #include <exception>
 #include <vector>
 #include <string>
+#include "Calculator.h"
 using namespace std;
 
 int main() {
 	bool mainloop = true;
 
 	string inputString = "";
+	Calculator *calculator = new Calculator();
 
 	while (mainloop) {
 		//Short output string describing the program
@@ -29,9 +31,8 @@ int main() {
 				cout
 						<< "Input a command:";
 				if (cin >> inputString) {
-					if (inputString == "+") {
-						loop1 = false;
-						cout << endl;
+					if (inputString.length() > 0) {
+						calculator->simplify(inputString);
 
 						cin.clear();
 						cin.ignore();
@@ -55,6 +56,7 @@ int main() {
 				}
 			}
 		} // End loop1 while statement
+		delete calculator;
 		return 0;
 	}
 }
